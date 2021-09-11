@@ -189,7 +189,7 @@ export default {
       // 控制添加用户对话框的显示与隐藏
       addDialogVisible: false,
       // 添加用户的表单数据
-      addForm: {},
+      addForm: {},  //这里并没有写表单中需要的属性，而是在表单填写的时候，在v-model后面就是她的属性
       // 添加表单的验证规则对象
       addFormRules: {
         username: [
@@ -255,6 +255,7 @@ export default {
     // 监听pagesize改变的事件
     handleSizeChange(newSize) {
       this.queryInfo.pagesize = newSize;
+      //重新获取用户数据列表
       this.getUserList();
     },
     // 切换页码时会触发的函数
@@ -276,7 +277,6 @@ export default {
     },
     // 监听添加用户对话框的关闭事件
     addDialogClosed() {
-      console.log(111);
       this.$refs.addFormRef.resetFields();
     },
     // 点击按钮，添加新用户

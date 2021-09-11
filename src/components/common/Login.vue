@@ -87,7 +87,6 @@ export default {
         // 使用解构的方式来得到返回的具体数据，并且重新命名为res
         const { data: res } = await this.$http.post('login', this.loginForm);
         if (res.meta.status !== 200) {
-          console.log(res.meta.status)
           return this.$message.error('登录失败');
         }
         this.$message.success('登录成功');

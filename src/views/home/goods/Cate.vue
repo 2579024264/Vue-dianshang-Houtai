@@ -76,11 +76,11 @@
             v-model="selectedKeys"
             :options="parentCateList"
             expandTrigger='hover'
-            :props="cascaderProps"
+            :props="cascaderProps" 
             @change="parentCateChanged"
             clearable
             :change-on-select="true"
-            >
+        >
         </el-cascader>
       </el-form-item>
     </el-form>
@@ -161,7 +161,7 @@ export default {
         label: 'cat_name',
         children: 'children',
       },
-      // 选中的父级分类的id数组 保存的是选中后父子的value值(id)
+      // 选中的父级分类的id数组 保存的是选中后父元素的value值(id)
       selectedKeys: [],
     };
   },
@@ -176,6 +176,7 @@ export default {
         return this.$message.error('获取商品失败');
       }
       this.catelist = res.data.result;
+      console.log(this.catelist);
       this.total = res.data.total;
     },
     // 监听pagesize改变的事件
@@ -199,11 +200,11 @@ export default {
       const { data: res } = await this.$http.get('categories', {
         params: { type: 2 },
       });
-      console.log(res.data);
       if (res.meta.status !== 200) {
         return this.$message.error('获取父级分类数据失败!');
       }
       this.parentCateList = res.data;
+      console.log(this.parentCateList);
     },
     // 级联选择器中选项发生变化触发这个函数
     parentCateChanged() {

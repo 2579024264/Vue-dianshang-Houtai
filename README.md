@@ -1,24 +1,30 @@
 # houtai
 
-## Project setup
-```
-yarn install
-```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+# 概述：
+  使用vue-cli搭建的一个电商后台项目
+  1.用户的正常登陆和退出功能
+  2.显示用户的列表信息，并且可进行增删查改
+  3.用户角色的管理，其中包括可以添加角色类型，对指定的角色进行编辑、删除和权限的分配
+  4.权限列表的显示
+  5.商品列表的显示，查找、修改、删除、增加
+  6.商品分类的列表的分级显示、删除、增加
+  7.订单列表的显示，订单的查找，编辑，以及查看物流信息
+  8.使用echart图表的格式统计用户来源信息。
 
-### Compiles and minifies for production
-```
-yarn build
-```
 
-### Lints and fixes files
-```
-yarn lint
-```
+# 使用技术栈：
+Vue 2.x 
+Vue-cli 3.x
+vue-router
+axios
+element-ui(按需加载)
+token身份验证
+echarts
+nProgress
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# 项目启动
+1.npm install
+2.npm run serve
+
+

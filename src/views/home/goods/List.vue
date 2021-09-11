@@ -31,6 +31,7 @@
        <el-table-column label="商品重量" prop="goods_weight" width="70px"></el-table-column>
        <el-table-column label="商品创建时间"  width="140px">
          <template slot-scope="scope">
+          <!-- 这里的dataFormat方法绑定在了vue方法上面 -->
            {{scope.row.add_time | dataFormat}}
          </template>
        </el-table-column>

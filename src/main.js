@@ -34,6 +34,7 @@ axios.interceptors.request.use((config) => {
   // 给请求头中添加一个Authorization属性，属性值是保存在sessiontStorage中的token值
   // 作用就是当下一次请求服务器时会将token携带过去
   config.headers.Authorization = window.sessionStorage.getItem('token');
+  console.log(window.sessionStorage.getItem('token'));
   NProgress.done();
   return config;
 });

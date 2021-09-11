@@ -1,7 +1,7 @@
 <template>
   <el-container class="home-container">
     <!-- 头部区域 -->
-    <el-header >
+    <el-header>
       <div>
         <span>电商后台管理系统</span>
       </div>
@@ -10,51 +10,40 @@
     <!-- 主体区域 -->
     <el-container>
       <!-- 侧边栏  -->
-      <el-aside :width="isCollapse ? '64px':'200px'">
-        <div class="toggle-button" @click="toggleCollapse">
-            |||
-        </div>
+      <el-aside :width="isCollapse ? '64px' : '200px'">
+        <div class="toggle-button" @click="toggleCollapse">|||</div>
         <!-- 侧边栏菜单区域 -->
-        <el-menu
-          background-color="#333744"
-          text-color="#fff"
-          active-text-color="#409EFF"
-          unique-opened
-          :collapse="isCollapse"
-          :collapse-transition="false"
-          router
-          :default-active="activePath"
-          >
+        <el-menu background-color="#333744" 
+                 text-color="#fff" 
+                 active-text-color="#409EFF"
+                 unique-opened 
+                :collapse="isCollapse" 
+                :collapse-transition="false" 
+                router 
+                :default-active="activePath">
           <!-- 一级菜单 -->
-          <el-submenu :index="item.id+''" v-for="item in menuList" :key="item.id">
+          <el-submenu :index="item.id + ''" v-for="item in menuList" :key="item.id">
             <!-- 一级菜单的模板区 -->
             <template slot="title">
-            <i :class="iconObj[item.id]"></i>
-            <span >{{item.authName}}</span>
+              <i :class="iconObj[item.id]"></i>
+              <span>{{ item.authName }}</span>
             </template>
             <!-- 二级菜单 -->
-              <el-menu-item  :index="'/'+subItem.path+''"
-                              v-for="subItem in item.children"
-                              :key="subItem.id"
-                              @click="saveNavState('/'+subItem.path+'')">
-                <template slot="title">
+            <el-menu-item :index="'/' + subItem.path + ''" v-for="subItem in item.children" :key="subItem.id" @click="saveNavState('/' + subItem.path + '')">
+              <template slot="title">
                 <i class="el-icon-menu"></i>
-                <span>{{subItem.authName}}</span>
-            </template>
-              </el-menu-item>
-              <!-- <el-menu-item index="1-4-1">选项1</el-menu-item>
-              <el-menu-item index="1-4-1">选项1</el-menu-item>
-              <el-menu-item index="1-4-1">选项1</el-menu-item> -->
-
+                <span>{{ subItem.authName }}</span>
+              </template>
+            </el-menu-item>
           </el-submenu>
-    </el-menu>
+        </el-menu>
       </el-aside>
       <!-- 右侧内容主体 -->
       <el-main>
         <!-- 放一个占位符 -->
         <router-view></router-view>
       </el-main>
-  </el-container>
+    </el-container>
   </el-container>
 </template>
 
@@ -76,65 +65,65 @@ export default {
       // 是否折叠
       isCollapse: false,
       activePath: ' ',
-    };
+    }
   },
   methods: {
     logout() {
       // 清空token
-      window.sessionStorage.clear();
+      window.sessionStorage.clear()
       // 跳转到登录页
-      this.$router.push('/login');
+      this.$router.push('/login')
     },
     async getMenuList() {
-      const { data: res } = await this.$http.get('menus');
-      if (res.meta.status !== 200) return this.$message.error(res.meta.message);
-      this.menuList = res.data;
+      const { data: res } = await this.$http.get('menus')
+      if (res.meta.status !== 200) return this.$message.error(res.meta.message)
+      this.menuList = res.data
     },
     // 点击切换菜单的折叠与展开
     toggleCollapse() {
-      this.isCollapse = !this.isCollapse;
+      this.isCollapse = !this.isCollapse
     },
     // 保存连接的激活状态 即保存点击二级菜单后的路径，然后将之在一级菜单中显示
     saveNavState(activePath) {
-      window.sessionStorage.setItem('activePath', activePath);
-      this.activePath = window.sessionStorage.getItem('activePath');
+      window.sessionStorage.setItem('activePath', activePath)
+      this.activePath = window.sessionStorage.getItem('activePath')
     },
   },
   created() {
-    this.getMenuList();
-    this.activePath = window.sessionStorage.getItem('activePath');
+    this.getMenuList()
+    this.activePath = window.sessionStorage.getItem('activePath')
   },
-};
+}
 </script>
 
 <style lang='less' scoped>
-.home-container{
+.home-container {
   width: 100%;
   height: 100%;
 }
 .el-header {
-  background: #373D41;
-  display:flex;
+  background: #373d41;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   color: #fff;
   font-size: 25px;
 }
-.el-aside{
+.el-aside {
   background: #333744;
 
-  .el-menu{
-    border-right:none;
+  .el-menu {
+    border-right: none;
   }
 }
-.el-main{
-  background: #EAEDF1;
+.el-main {
+  background: #eaedf1;
 }
-.iconfont{
-  margin-right:10px;
+.iconfont {
+  margin-right: 10px;
 }
-.toggle-button{
-  background: #4A5964;
+.toggle-button {
+  background: #4a5964;
   font-size: 10px;
   line-height: 24px;
   text-align: center;
